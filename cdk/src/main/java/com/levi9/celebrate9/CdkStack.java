@@ -16,18 +16,13 @@ import java.io.File;
 
 
 public class CdkStack extends Stack {
-    public CdkStack(final Construct scope, final String id) {
-        this(scope, id, null);
-        initializeResources();
-    }
-
-    public CdkStack(final Construct scope, final String id, final StackProps props) {
+    public CdkStack(final Construct scope, final String id, final String stage, final StackProps props) {
         super(scope, id, props);
-        initializeResources();
+        initializeResources(stage);
     }
 
-    private void initializeResources() {
-        final Function apiFunction = new Function(this, "api",
+    private void initializeResources(final String stage) {
+        final Function apiFunction = new Function(this, stage + "-api",
                 FunctionProps.builder()
                         .functionName("api")
                         .runtime(Runtime.JAVA_17)
@@ -44,7 +39,7 @@ public class CdkStack extends Stack {
                 .defaultIntegration(integration)
                 .build();
 
-        final RestApi restApi = new RestApi(this, "RestApi");
+        final RestApi restApi = new RestApi(this, stage + "-RestApi");
 
         restApi.getRoot().addProxy(proxyR);
     }
