@@ -31,7 +31,7 @@ public class CdkStack extends Stack {
                 FunctionProps.builder()
                         .functionName("api")
                         .runtime(Runtime.JAVA_17)
-                        .code(Code.fromAsset(new File(new File(System.getProperty("user.dir")), "../api/target/api.jar").toString()))
+                        .code(Code.fromAsset(new File(new File(System.getProperty("user.dir")), "./api/target/api.jar").toString()))
                         .handler("com.levi9.celebrate9.StreamLambdaHandler")
                         .memorySize(1024)
                         .timeout(Duration.seconds(10))
