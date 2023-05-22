@@ -20,8 +20,7 @@
         <maven-shade-plugin.version>3.4.1</maven-shade-plugin.version>
         <wrapper.version>1.0.29.RELEASE</wrapper.version>
 
-        <spring-boot.version>3.0.6</spring-boot.version>
-        <!--        <spring-boot.version>2.7.11</spring-boot.version>-->
+        <spring-boot.version>3.1.0</spring-boot.version>
     </properties>
 
     <dependencyManagement>
