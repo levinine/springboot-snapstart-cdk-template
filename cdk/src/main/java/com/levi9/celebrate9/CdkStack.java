@@ -31,7 +31,7 @@ public class CdkStack extends Stack {
                         .memorySize(1024)
                         .timeout(Duration.seconds(10))
                         .build());
-        
+
         final LambdaIntegration integration = new LambdaIntegration(apiFunction);
 
         final ProxyResourceOptions proxyR = ProxyResourceOptions.builder()
