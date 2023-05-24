@@ -22,7 +22,6 @@ public class CdkStack extends Stack {
 
     }
 
-
     private void initializeResources(final String stage) {
 
         final Function apiFunction = new Function(this, stage + "-api",
@@ -34,7 +33,6 @@ public class CdkStack extends Stack {
                         .memorySize(1024)
                         .timeout(Duration.seconds(10))
                         .build());
-        apiFunction.grantInvoke(new ServicePrincipal("apigateway.amazonaws.com"));
 
         final CfnFunction cfnFunction = (CfnFunction) apiFunction.getNode().getDefaultChild();
         if (cfnFunction != null) {
@@ -43,7 +41,13 @@ public class CdkStack extends Stack {
                     .build());
         }
 
-        final LambdaIntegration integration = new LambdaIntegration(apiFunction);
+        final Alias lambdaAlias = Alias.Builder.create(this, "SnapStartAlias")
+                .aliasName("snapstart")
+                .version(apiFunction.getCurrentVersion())
+                .build();
+        lambdaAlias.grantInvoke(new ServicePrincipal("apigateway.amazonaws.com"));
+
+        final LambdaIntegration integration = new LambdaIntegration(lambdaAlias);
 
         final ProxyResourceOptions proxyR = ProxyResourceOptions.builder()
                 .anyMethod(true)
