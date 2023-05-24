@@ -22,56 +22,38 @@
 
         <spring-boot.version>3.1.0</spring-boot.version>
         <commons.version>0.0.1-SNAPSHOT</commons.version>
-
-        <aws-serverless-java-container-springboot3.version>2.0.0-M1
-        </aws-serverless-java-container-springboot3.version>
-        <aws-lambda-events.version>3.9.0</aws-lambda-events.version>
-        <aws-lambda-java-core.version>1.1.0</aws-lambda-java-core.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.levi9</groupId>
             <artifactId>commons</artifactId>
             <version>${commons.version}</version>
         </dependency>
+
         <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-lambda-java-events</artifactId>
-            <version>${aws-lambda-events.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>${spring-boot.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
         </dependency>
         <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-lambda-java-core</artifactId>
-            <version>${aws-lambda-java-core.version}</version>
-            <scope>provided</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>com.amazonaws.serverless</groupId>
             <artifactId>aws-serverless-java-container-springboot3</artifactId>
-            <version>${aws-serverless-java-container-springboot3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -114,8 +96,6 @@
                     </dependency>
                 </dependencies>
             </plugin>
-
         </plugins>
     </build>
-
 </project>
