@@ -14,7 +14,6 @@
         <spring-boot.version>3.1.0</spring-boot.version>
         <commons.version>0.0.1-SNAPSHOT</commons.version>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.levi9</groupId>
