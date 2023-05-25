@@ -54,7 +54,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <mainClass>com.levi9.celebrate9.CdkApp</mainClass>
+                    <mainClass>com.levi9.celebrate9.cdk.CdkApp</mainClass>
                 </configuration>
             </plugin>
         </plugins>

@@ -1,4 +1,4 @@
-package com.levi9.celebrate9;
+package com.levi9.celebrate9.cdk;
 
 import software.amazon.awscdk.Duration;
 import software.amazon.awscdk.Stack;
@@ -29,7 +29,7 @@ public class CdkStack extends Stack {
                         .functionName(stage + "-api")
                         .runtime(Runtime.JAVA_17)
                         .code(Code.fromAsset(new File(new File(System.getProperty("user.dir")), "./api/target/api.jar").toString()))
-                        .handler("com.levi9.celebrate9.StreamLambdaHandler")
+                        .handler("com.levi9.celebrate9.api.StreamLambdaHandler")
                         .memorySize(1024)
                         .timeout(Duration.seconds(10))
                         .build());

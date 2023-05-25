@@ -1,6 +1,6 @@
-package com.levi9.celebrate9.repository;
+package com.levi9.celebrate9.commons.repository;
 
-import com.levi9.celebrate9.model.DummyObject;
+import com.levi9.celebrate9.commons.model.DummyObject;
 import org.springframework.stereotype.Repository;
 
 @Repository
