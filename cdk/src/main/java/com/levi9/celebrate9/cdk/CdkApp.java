@@ -14,7 +14,7 @@ public class CdkApp {
         }
 
         final String stackName = "celebrate9-be-" + stage.toLowerCase();
-        new CdkStack(app, stackName, stage, StackProps.builder()
+        new CdkStack(app, stackName, StackProps.builder()
                 .build());
 
         app.synth();

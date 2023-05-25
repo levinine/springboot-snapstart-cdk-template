@@ -28,14 +28,6 @@
             <groupId>software.constructs</groupId>
             <artifactId>constructs</artifactId>
         </dependency>
-        <dependency>
-            <groupId>software.amazon.awscdk</groupId>
-            <artifactId>apigatewayv2-alpha</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>software.amazon.awscdk</groupId>
-            <artifactId>apigatewayv2-integrations-alpha</artifactId>
-        </dependency>
     </dependencies>
 
     <build>

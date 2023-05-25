@@ -6,7 +6,6 @@ import software.amazon.awscdk.StackProps;
 import software.amazon.awscdk.services.apigateway.LambdaIntegration;
 import software.amazon.awscdk.services.apigateway.ProxyResourceOptions;
 import software.amazon.awscdk.services.apigateway.RestApi;
-import software.amazon.awscdk.services.apigateway.RestApiProps;
 import software.amazon.awscdk.services.iam.ServicePrincipal;
 import software.amazon.awscdk.services.lambda.Runtime;
 import software.amazon.awscdk.services.lambda.*;
@@ -16,9 +15,9 @@ import java.io.File;
 
 
 public class CdkStack extends Stack {
-    public CdkStack(final Construct scope, final String id, final String stage, final StackProps props) {
+    public CdkStack(final Construct scope, final String id, final StackProps props) {
         super(scope, id, props);
-        initializeResources(stage);
+        initializeResources(id);
 
     }
 
@@ -41,8 +40,8 @@ public class CdkStack extends Stack {
                     .build());
         }
 
-        final Alias lambdaAlias = Alias.Builder.create(this, "SnapStartAlias")
-                .aliasName("snapstart")
+        final Alias lambdaAlias = Alias.Builder.create(this, stage + "-snapstart-alias")
+                .aliasName(stage + "-snapstart-alias")
                 .version(apiFunction.getCurrentVersion())
                 .build();
         lambdaAlias.grantInvoke(new ServicePrincipal("apigateway.amazonaws.com"));
@@ -54,9 +53,7 @@ public class CdkStack extends Stack {
                 .defaultIntegration(integration)
                 .build();
 
-        final RestApi restApi = new RestApi(this, stage + "-RestApi", RestApiProps.builder()
-                .cloudWatchRole(true)
-                .build());
+        final RestApi restApi = new RestApi(this, stage + "-rest-api");
 
         restApi.getRoot().addProxy(proxyR);
     }
