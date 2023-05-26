@@ -1,7 +1,7 @@
-package com.levi9.celebrate9.controller;
+package com.levi9.celebrate9.api.controller;
 
-import com.levi9.celebrate9.model.DummyObject;
-import com.levi9.celebrate9.service.DummyService;
+import com.levi9.celebrate9.commons.model.DummyObject;
+import com.levi9.celebrate9.commons.service.DummyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.bind.annotation.GetMapping;

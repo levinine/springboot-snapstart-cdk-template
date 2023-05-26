@@ -1,4 +1,4 @@
-package com.levi9.celebrate9;
+package com.levi9.celebrate9.api;
 
 import com.amazonaws.serverless.exceptions.ContainerInitializationException;
 import com.amazonaws.serverless.proxy.model.AwsProxyRequest;
@@ -23,14 +23,14 @@ public class StreamLambdaHandler implements RequestStreamHandler {
                     .asyncInit()
                     .springBootApplication(Celebrate9Application.class)
                     .buildAndInitialize();
-        } catch (ContainerInitializationException e) {
+        } catch (final ContainerInitializationException e) {
             e.printStackTrace();
             throw new RuntimeException("Could not initialize Spring Boot application", e);
         }
     }
 
     @Override
-    public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context)
+    public void handleRequest(final InputStream inputStream, final OutputStream outputStream, final Context context)
             throws IOException {
         handler.proxyStream(inputStream, outputStream, context);
     }

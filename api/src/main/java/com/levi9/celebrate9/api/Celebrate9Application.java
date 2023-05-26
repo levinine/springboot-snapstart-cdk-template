@@ -1,7 +1,7 @@
-package com.levi9.celebrate9;
+package com.levi9.celebrate9.api;
 
 
-import com.levi9.celebrate9.controller.DummyController;
+import com.levi9.celebrate9.api.controller.DummyController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
