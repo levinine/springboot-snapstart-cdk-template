@@ -5,10 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.levi9</groupId>
-        <artifactId>celebrate9</artifactId>
+        <artifactId>springboot-snapstart-cdk-template</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.levi9</groupId>
     <artifactId>api</artifactId>
     <properties>
         <spring-boot.version>3.1.0</spring-boot.version>
@@ -34,10 +33,6 @@
         <dependency>
             <groupId>com.amazonaws.serverless</groupId>
             <artifactId>aws-serverless-java-container-springboot3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
     <build>

@@ -5,10 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.levi9</groupId>
-        <artifactId>celebrate9</artifactId>
+        <artifactId>springboot-snapstart-cdk-template</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>com.levi9</groupId>
     <artifactId>cdk</artifactId>
     <dependencies>
         <dependency>

@@ -1,4 +1,4 @@
-package com.levi9.celebrate9.api;
+package com.levi9.snapstart.api;
 
 import com.amazonaws.serverless.exceptions.ContainerInitializationException;
 import com.amazonaws.serverless.proxy.model.AwsProxyRequest;
@@ -21,7 +21,7 @@ public class StreamLambdaHandler implements RequestStreamHandler {
             handler = new SpringBootProxyHandlerBuilder<AwsProxyRequest>()
                     .defaultProxy()
                     .asyncInit()
-                    .springBootApplication(Celebrate9Application.class)
+                    .springBootApplication(Application.class)
                     .buildAndInitialize();
         } catch (final ContainerInitializationException e) {
             e.printStackTrace();

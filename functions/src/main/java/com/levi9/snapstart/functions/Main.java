@@ -1,4 +1,4 @@
-package com.levi9.celebrate9.functions;
+package com.levi9.snapstart.functions;
 
 public class Main {
     public static void main(final String[] args) {

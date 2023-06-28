@@ -1,4 +1,4 @@
-package com.levi9.celebrate9.cdk;
+package com.levi9.snapstart.cdk;
 
 import software.amazon.awscdk.App;
 import software.amazon.awscdk.StackProps;
@@ -13,9 +13,7 @@ public class CdkApp {
             throw new RuntimeException("Please ensure that the \"DEPLOY_STAGE\" environment variable is set to a valid value.");
         }
 
-        final String stackName = "celebrate9-be-" + stage.toLowerCase();
-        new CdkStack(app, stackName, StackProps.builder()
-                .build());
+        new CdkStack(app, stage.toLowerCase(), StackProps.builder().build());
 
         app.synth();
     }

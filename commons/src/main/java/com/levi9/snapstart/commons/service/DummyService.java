@@ -1,17 +1,19 @@
-package com.levi9.celebrate9.commons.service;
+package com.levi9.snapstart.commons.service;
 
-import com.levi9.celebrate9.commons.model.DummyObject;
-import com.levi9.celebrate9.commons.repository.DummyRepository;
-import lombok.RequiredArgsConstructor;
+import com.levi9.snapstart.commons.model.DummyObject;
+import com.levi9.snapstart.commons.repository.DummyRepository;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Service;
 
 @Service
 @Import(DummyRepository.class)
-@RequiredArgsConstructor
 public class DummyService {
 
     private final DummyRepository dummyRepository;
+
+    public DummyService(final DummyRepository dummyRepository) {
+        this.dummyRepository = dummyRepository;
+    }
 
     public DummyObject getDummyObject() {
         return dummyRepository.getDummyObject();

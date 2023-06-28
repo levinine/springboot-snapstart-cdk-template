@@ -1,8 +1,7 @@
-package com.levi9.celebrate9.api.controller;
+package com.levi9.snapstart.api.controller;
 
-import com.levi9.celebrate9.commons.model.DummyObject;
-import com.levi9.celebrate9.commons.service.DummyService;
-import lombok.RequiredArgsConstructor;
+import com.levi9.snapstart.commons.model.DummyObject;
+import com.levi9.snapstart.commons.service.DummyService;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,10 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 @Import({DummyService.class})
-@RequiredArgsConstructor
 public class DummyController {
 
     private final DummyService dummyService;
+
+    public DummyController(final DummyService dummyService) {
+        this.dummyService = dummyService;
+    }
 
     @GetMapping("/test")
     public DummyObject getDummyObject() {
