@@ -10,6 +10,7 @@ import software.amazon.awscdk.services.lambda.*;
 import software.constructs.Construct;
 
 import java.io.File;
+import java.util.Map;
 
 public class CdkStack extends Stack {
     public CdkStack(final Construct scope, final String stage, final StackProps props) {
@@ -60,6 +61,10 @@ public class CdkStack extends Stack {
                         .runtime(Runtime.JAVA_17)
                         .code(Code.fromAsset(new File(new File(System.getProperty("user.dir")), "./functions/target/functions.jar").toString()))
                         .handler("org.springframework.cloud.function.adapter.aws.FunctionInvoker::handleRequest")
+                        .environment(Map.of(
+                                "SPRING_CLOUD_FUNCTION_DEFINITION", "scheduleGroupArchiving",
+                                "MAIN_CLASS", "com.levi9.snapstart.functions.FunctionsConfig"
+                        ))
                         .memorySize(2048)
                         .timeout(Duration.seconds(30))
                         .build());

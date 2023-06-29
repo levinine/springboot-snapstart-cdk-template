@@ -18,4 +18,3 @@ public class CdkApp {
         app.synth();
     }
 }
-
