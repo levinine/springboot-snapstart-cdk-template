@@ -15,6 +15,7 @@ public class CdkStack extends Stack {
     public CdkStack(final Construct scope, final String stage, final StackProps props) {
         super(scope, "levi9-snapstart-" + stage, props);
 
+        // API Gateway and Lambda
         final Function apiFunction = new Function(this, stage + "-api",
                 FunctionProps.builder()
                         .functionName(stage + "-api")
@@ -22,7 +23,7 @@ public class CdkStack extends Stack {
                         .code(Code.fromAsset(new File(new File(System.getProperty("user.dir")), "./api/target/api.jar").toString()))
                         .handler("com.levi9.snapstart.api.StreamLambdaHandler")
                         .memorySize(2048)
-                        .timeout(Duration.seconds(15))
+                        .timeout(Duration.seconds(30))
                         .build());
 
         final CfnFunction cfnFunction = (CfnFunction) apiFunction.getNode().getDefaultChild();
@@ -51,5 +52,28 @@ public class CdkStack extends Stack {
         final RestApi restApi = new RestApi(this, stage + "-rest-api", restApiProps);
 
         restApi.getRoot().addProxy(proxyR);
+
+        // Standalone Lambda function
+        final Function dummyFunction = new Function(this, stage + "-dummy",
+                FunctionProps.builder()
+                        .functionName(stage + "-dummy")
+                        .runtime(Runtime.JAVA_17)
+                        .code(Code.fromAsset(new File(new File(System.getProperty("user.dir")), "./functions/target/functions.jar").toString()))
+                        .handler("org.springframework.cloud.function.adapter.aws.FunctionInvoker::handleRequest")
+                        .memorySize(2048)
+                        .timeout(Duration.seconds(30))
+                        .build());
+
+        final CfnFunction cfnDummyFunction = (CfnFunction) dummyFunction.getNode().getDefaultChild();
+        if (cfnDummyFunction != null) {
+            cfnDummyFunction.setSnapStart(CfnFunction.SnapStartProperty.builder()
+                    .applyOn("PublishedVersions")
+                    .build());
+        }
+
+        final Alias dummyLambdaAlias = Alias.Builder.create(this, stage + "-dummy-snapstart-alias")
+                .aliasName(stage + "-dummy-snapstart-alias")
+                .version(dummyFunction.getCurrentVersion())
+                .build();
     }
 }
