@@ -62,7 +62,7 @@ public class CdkStack extends Stack {
                         .code(Code.fromAsset(new File(new File(System.getProperty("user.dir")), "./functions/target/functions.jar").toString()))
                         .handler("org.springframework.cloud.function.adapter.aws.FunctionInvoker::handleRequest")
                         .environment(Map.of(
-                                "SPRING_CLOUD_FUNCTION_DEFINITION", "scheduleGroupArchiving",
+                                "SPRING_CLOUD_FUNCTION_DEFINITION", "dummyFunction",
                                 "MAIN_CLASS", "com.levi9.snapstart.functions.FunctionsConfig"
                         ))
                         .memorySize(2048)
